@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class BookList extends Component {
+// A container is actually a smart component that is able to interact with model(redux)
+class BookList extends Component {
     renderList() {
         return this.props.books.map((book) => {
             return (
@@ -17,3 +19,14 @@ export default class BookList extends Component {
         );
     }
 };
+
+function mapStateToProps(state){
+    // Whatever is returned is shown up as props in BookList
+    return(
+        {
+            books : state.books
+        }
+    );
+}
+
+export default connect(mapStateToProps)(BookList);
